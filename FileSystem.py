@@ -10,4 +10,3 @@ class FileSystem(object):
     def setData(self, filename, data):
         f = open("files/" + filename + ".json", "w")
         f.write(str(data))
-

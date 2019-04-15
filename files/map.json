@@ -1,29 +1,33 @@
 {
-"objects":[
-{"id": 0, "posx": 3, "posy": 1, "name": "Regal", "movable": true, "pickable": false, "inventory":[]},
-{"id": 1, "posx": 2, "posy": 2, "name": "Tisch", "movable": true, "pickable": false, "inventory":[
-{"id": 2, "name": "L2 Karte", "movable": false, "pickable": true, "inventory":[]}]},
-{"id": 3, "posx": 7, "posy": 2, "name": "Feuermelder", "movable": false, "pickable": false, "inventory":[]},
-{"id": 4, "posx": 7, "posy": 3, "name": "Muelleimer", "movable": true, "pickable": false, "inventory":[
-{"id": 5, "name": "Pincodezettel", "movable": false, "pickable": true, "inventory":[]}]},
-{"id": 6, "posx": 7, "posy": 4, "name": "Tisch", "movable": true, "pickable": false, "inventory":[]},
-{"id": 7, "posx": 2, "posy": 5, "name": "Regal", "movable" true: , "pickable": false, "inventory":[]},
-{"id": 8, "posx": 7, "posy": 5, "name": "Server", "movable": false, "pickable": false, "inventory":[]},
-{"id": 9, "posx": 7, "posy": 6, "name": "Server", "movable": false, "pickable": false, "inventory":[]},
-{"id": 10, "posx": 2, "posy": 7, "name": "Tisch", "movable": true, "pickable": false, "inventory":[]}
-],
-"doors":[
-{"direction": "we", "type": "card", "authtype": "L1","xpos": "3-4", "ypos": "1"},
-{"direction": "ns", "type": "card", "authtype": "L2","xpos": "6", "ypos": "1-2"},
-{"direction": "we", "type": "door", "authtype": "none", "xpos": "4-5", "ypos": "3"},
-{"direction": "ns", "type": "broken", "authtype": "none", "xpos": "6", "ypos": "4-5"},
-{"direction": "we", "type": "card", "authtype": "L3", "xpos": "3-4", "ypos": "5"},
-{"direction": "we", "type": "pin", "authtype": "4245", "xpos": "4-5", "ypos": "5"},
-{"direction": "ns", "type": "door", "authtype": "none", "xpos": "6", "ypos": "6-7"},
-{"direction": "we", "type": "card", "authtype": "L1", "xpos": "3-4", "ypos": "7"},
-{"direction": "ns", "type": "door", "authtype": "none", "xpos": "6", "ypos": "8-9"},
-{"direction": "we", "type": "door", "authtype": "none", "xpos": "4-5", "ypos": "9"}
-],
-"people":[
-{"type": "player"}]
+  "objects":[
+    {"id": 0, "posx": 3, "posy": 1, "name": "Regal", "movable": true, "pickable": false, "inventory":[]},
+    {"id": 1, "posx": 2, "posy": 2, "name": "Tisch", "movable": true, "pickable": false, "inventory":[
+      {"id": 2, "name": "L2 Karte", "movable": false, "pickable": true, "inventory":[]}]},
+    {"id": 3, "posx": 7, "posy": 2, "name": "Feuermelder", "movable": false, "pickable": false, "inventory":[]},
+    {"id": 4, "posx": 7, "posy": 3, "name": "Muelleimer", "movable": true, "pickable": false, "inventory":[
+      {"id": 5, "name": "Pincodezettel", "movable": false, "pickable": true}]},
+    {"id": 6, "posx": 7, "posy": 4, "name": "Tisch", "movable": true, "pickable": false, "inventory":[]},
+    {"id": 7, "posx": 2, "posy": 5, "name": "Regal", "movable": true, "pickable": false, "inventory":[]},
+    {"id": 8, "posx": 7, "posy": 5, "name": "Server", "movable": false, "pickable": false, "inventory":[]},
+    {"id": 9, "posx": 7, "posy": 6, "name": "Server", "movable": false, "pickable": false, "inventory":[]},
+    {"id": 10, "posx": 2, "posy": 7, "name": "Tisch", "movable": true, "pickable": false, "inventory":[]},
+    {"id": 11, "posx": 1, "posy": 5, "name": "Portal", "movable": false, "pickable": false, "inventory":[]}
+  ],
+  "doors":[
+    {"direction": "we", "type": "card", "authtype": "L1","xpos": "3-4", "ypos": "1", "status": "close"},
+    {"direction": "ns", "type": "card", "authtype": "L2","xpos": "6", "ypos": "1-2", "status": "close"},
+    {"direction": "we", "type": "door", "authtype": "none", "xpos": "4-5", "ypos": "3", "status": "close"},
+    {"direction": "ns", "type": "broken", "authtype": "none", "xpos": "6", "ypos": "4-5", "status": "close"},
+    {"direction": "we", "type": "card", "authtype": "L3", "xpos": "3-4", "ypos": "5", "status": "close"},
+    {"direction": "we", "type": "code", "authtype": "4245", "xpos": "4-5", "ypos": "5", "status": "close"},
+    {"direction": "ns", "type": "door", "authtype": "none", "xpos": "6", "ypos": "6-7", "status": "open"},
+    {"direction": "we", "type": "card", "authtype": "L1", "xpos": "3-4", "ypos": "7", "status": "close"},
+    {"direction": "ns", "type": "door", "authtype": "none", "xpos": "6", "ypos": "8-9", "status": "open"},
+    {"direction": "we", "type": "door", "authtype": "none", "xpos": "4-5", "ypos": "9", "status": "close"}
+  ],
+  "people":[
+    {"type": "player", "facing": "s", "xpos": 4, "ypos": 5},
+    {"type": "narrator", "facing": "e", "xpos": 1, "ypos": 8},
+    {"type": "guard", "facing": "s", "xpos": 6, "ypos": 9}
+  ]
 }

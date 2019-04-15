@@ -1,5 +1,32 @@
 {
-"objectmessages":{
-"insert_id_here":{"onpickup": "","onlookat": "","onuse": ""}
-}
+  "introduction": {
+    "welcome": "PLATZHALTER Hallo und herzlich wilkommen",
+    "name": "Wie heisst du?",
+    "personalwelcome": "Hallo %name%",
+    "help": "Mit dem Befehl 'help commands' kannst du dir alle Befehle anzeigen lassen.",
+    "helpcommands": "Gebe nun mal 'help commands' ein, um eine Uebersicht alle Befehle zu bekommen:",
+    "helpcommand": "Mit 'help <Befehlsname>' erhälst du nähere Informationen zu einem Befehl",
+    "end": "Die kurze Einfuehrung ist nun zu Ende.\nDu kannst dir nun die Befehle naeher kennenlernen,\noder direkt anfangen zu spielen."
+  },
+  "commands": {
+    "help":{
+      "info": "Liefert naehere Informationen zu Befehlen. \nBenutzung: 'help <Befehlsname>'"
+    },
+    "quit": {
+      "info": "Schliesst das Programm. Alle Spielfortschritte gehen verloren."
+    },
+    "commands": {
+      "info": "Folgende Befehle sind registriert:\nhelp <Befehl> \nquit \ncommands \nleft \nright \nlookaround \nmove \npickup <Objekt> \ngoto <X> <Y>"
+    }
+  }
+  ,
+  "general": {
+    "invalidcommand": "Dieser Befehl ist nicht registriert. Nutze 'help commands', um alle Befehle anzuzeigen.",
+    "invalidintroductionhelpcommand": "Dies ist nicht 'help commands'! Gebe 'help commands' ein:",
+    "seperator": "-------------------------------------------------------------------------------------------",
+    "input": "Eingabe:"
+  },
+  "objectmessages":{
+  "insert_id_here":{"onpickup": "","onlookat": "","onuse": ""}
+  }
 }

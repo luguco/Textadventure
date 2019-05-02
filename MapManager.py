@@ -11,10 +11,12 @@ class MapManager(object):
         # Initialize all variables
         self.objects = []
         self.doors = []
+        self.walls = jsonmap['walls']
 
         p = jsonmap['people'][0]
         n = jsonmap['people'][1]
         g = jsonmap['people'][2]
+        # TODO: ADD INVENTORY ITEMS TO PLAYER
 
         self.player = Player("", p['facing'], [], [p['xpos'], p['ypos']])
         self.narrator = Person("Erzähler", 'narrator', n['facing'], [n['xpos'], n['ypos']])
@@ -35,13 +37,15 @@ class MapManager(object):
         # Initialize all doors
         for d in jsonmap['doors']:
             if d['type'] == "card":
-                dobj = CardDoor(d['status'], d['direction'], [d['xpos'], d['ypos']], d['authtype'])
+                dobj = CardDoor(d['status'], [d['xpos'], d['ypos']], d['authtype'], d['name'])
                 self.doors.append(dobj)
+
             elif d['type'] == 'code':
-                dobj = CodeDoor(d['status'], d['direction'], [d['xpos'], d['ypos']], d['authtype'])
+                dobj = CodeDoor(d['status'], [d['xpos'], d['ypos']], d['authtype'], d['name'])
                 self.doors.append(dobj)
+
             elif d['type'] == 'broken' or d['type'] == 'door':
-                dobj = Door(d['status'], d['direction'], [d['xpos'], d['ypos']])
+                dobj = Door(d['status'], [d['xpos'], d['ypos']], d['name'])
                 self.doors.append(dobj)
 
     def getVisibleObjects(self):
@@ -81,83 +85,48 @@ class MapManager(object):
         for o in self.objects:
             if o.getPosition() in coordpos:
                 index = coordpos.index(o.getPosition())
-                res.append([o, index])
+                res.append(['object', o, index])
 
         # Find all matching doors at possible coordinates
         for d in self.doors:
-            doorcoord = [-1, -1]
-            if d.getDirection() == "ns":
-                doorpos = d.getPosition()
+            if d.getPosition() in coordpos:
+                index = coordpos.index(d.getPosition())
+                res.append(['door', d, index])
 
-                # Door is in font of player
-                if facing == 'n':
-                    doorcoord = [int(doorpos[0]), int(doorpos[1].split('-')[0])]
-                    if doorcoord == pos:
-                        res.append([d, 1])
+        # Find all matching walls at possible coordinates
+        for w in self.walls:
+            if w in coordpos:
+                index = coordpos.index(w)
+                res.append(['wall', w, index])
 
-                elif facing == 's':
-                    doorcoord = [int(doorpos[0]), int(doorpos[1].split('-')[1])]
-                    if doorcoord == pos:
-                        res.append([d, 1])
-
-                # Door is left or right from player
-                elif facing == 'w':
-                    doorcoord = [int(doorpos[0]), int(doorpos[1].split('-')[0])]
-
-                    if doorcoord == pos:
-                        res.append([d, 2])
-                    else:
-                        doorcoord = [int(doorpos[0]), int(doorpos[1].split('-')[1])]
-                        if doorcoord == pos:
-                            res.append([d, 0])
-
-                elif facing == "e":
-                    doorcoord = [int(doorpos[0]), int(doorpos[1].split('-')[0])]
-
-                    if doorcoord == pos:
-                        res.append([d, 0])
-                    else:
-                        doorcoord = [int(doorpos[0]), int(doorpos[1].split('-')[1])]
-                        if doorcoord == pos:
-                            res.append([d, 2])
-
-            elif d.getDirection() == "we":
-                doorpos = d.getPosition()
-
-                # Door is in front of player
-                if facing == 'w':
-                    doorcoord = [int(doorpos[0].split('-')[1]), int(doorpos[1])]
-                    if doorcoord == pos:
-                        res.append([d, 1])
-
-                elif facing == 'e':
-                    doorcoord = [int(doorpos[0].split('-')[0]), int(doorpos[1])]
-                    if doorcoord == pos:
-                        res.append([d, 1])
-
-                # Door is left or right from player
-                elif facing == 'n':
-                    doorcoord = [int(doorpos[0].split('-')[0]), int(doorpos[1])]
-                    if doorcoord == pos:
-                        res.append([d, 2])
-                    else:
-                        doorcoord = [int(doorpos[0].split('-')[1]), int(doorpos[1])]
-                        if doorcoord == pos:
-                            res.append([d, 0])
-
-                elif facing == 's':
-                    doorcoord = [int(doorpos[0].split('-')[0]), int(doorpos[1])]
-                    if doorcoord == pos:
-                        res.append([d, 0])
-                    else:
-                        doorcoord = [int(doorpos[0].split('-')[1]), int(doorpos[1])]
-                        if doorcoord == pos:
-                            res.append([d, 2])
-
-        return None
+        return res
 
     def getPlayer(self):
         return self.player
+
+    def rotatePlayer(self, direction):
+        facing = self.player.getFacing()
+
+        if direction == "right":
+            if facing == "n":
+                facing = "e"
+            elif facing == "e":
+                facing = "s"
+            elif facing == "s":
+                facing = "w"
+            elif facing == "w":
+                facing = "n"
+
+        elif direction == "left":
+            if facing == "n":
+                facing = "w"
+            elif facing == "w":
+                facing = "s"
+            elif facing == "s":
+                facing = "e"
+            elif facing == "e":
+                facing = "n"
+        self.player.setFacing(facing)
 
     def objectAtPosition(self, pos: list)-> bool:
         for o in self.objects:

@@ -1,33 +1,59 @@
 {
   "objects":[
-    {"id": 0, "posx": 3, "posy": 1, "name": "Regal", "movable": true, "pickable": false, "inventory":[]},
-    {"id": 1, "posx": 2, "posy": 2, "name": "Tisch", "movable": true, "pickable": false, "inventory":[
+    {"id": 0, "posx": 4, "posy": 2, "name": "Regal", "movable": true, "pickable": false, "inventory":[]},
+    {"id": 1, "posx": 3, "posy": 3, "name": "Tisch", "movable": true, "pickable": false, "inventory":[
       {"id": 2, "name": "L2 Karte", "movable": false, "pickable": true, "inventory":[]}]},
-    {"id": 3, "posx": 7, "posy": 2, "name": "Feuermelder", "movable": false, "pickable": false, "inventory":[]},
-    {"id": 4, "posx": 7, "posy": 3, "name": "Muelleimer", "movable": true, "pickable": false, "inventory":[
+    {"id": 3, "posx": 11, "posy": 3, "name": "Feuermelder", "movable": false, "pickable": false, "inventory":[]},
+    {"id": 4, "posx": 11, "posy": 5, "name": "Muelleimer", "movable": true, "pickable": false, "inventory":[
       {"id": 5, "name": "Pincodezettel", "movable": false, "pickable": true}]},
-    {"id": 6, "posx": 7, "posy": 4, "name": "Tisch", "movable": true, "pickable": false, "inventory":[]},
-    {"id": 7, "posx": 2, "posy": 5, "name": "Regal", "movable": true, "pickable": false, "inventory":[]},
-    {"id": 8, "posx": 7, "posy": 5, "name": "Server", "movable": false, "pickable": false, "inventory":[]},
-    {"id": 9, "posx": 7, "posy": 6, "name": "Server", "movable": false, "pickable": false, "inventory":[]},
-    {"id": 10, "posx": 2, "posy": 7, "name": "Tisch", "movable": true, "pickable": false, "inventory":[]},
-    {"id": 11, "posx": 1, "posy": 5, "name": "Portal", "movable": false, "pickable": false, "inventory":[]}
+    {"id": 6, "posx": 11, "posy": 6, "name": "Tisch", "movable": true, "pickable": false, "inventory":[]},
+    {"id": 7, "posx": 3, "posy": 8, "name": "Regal", "movable": true, "pickable": false, "inventory":[]},
+    {"id": 8, "posx": 11, "posy": 8, "name": "Server", "movable": false, "pickable": false, "inventory":[]},
+    {"id": 9, "posx": 11, "posy": 9, "name": "Server", "movable": false, "pickable": false, "inventory":[]},
+    {"id": 10, "posx": 3, "posy": 11, "name": "Tisch", "movable": true, "pickable": false, "inventory":[]},
+    {"id": 11, "posx": 2, "posy": 7, "name": "Portal", "movable": false, "pickable": false, "inventory":[]},
+    {"id": 12, "posx": 7, "posy": 15, "name": "Bewegungsmelder", "movable": false, "pickable": false, "inventory":[]},
+    {"id": 13, "posx": 9, "posy": 9, "name": "Regal", "movable": true, "pickable": false, "inventory":[
+      {"id": 14, "name": "L3 Karte", "movable": false, "pickable": true}]}
   ],
   "doors":[
-    {"direction": "we", "type": "card", "authtype": "L1","xpos": "3-4", "ypos": "1", "status": "close"},
-    {"direction": "ns", "type": "card", "authtype": "L2","xpos": "6", "ypos": "1-2", "status": "close"},
-    {"direction": "we", "type": "door", "authtype": "none", "xpos": "4-5", "ypos": "3", "status": "close"},
-    {"direction": "ns", "type": "broken", "authtype": "none", "xpos": "6", "ypos": "4-5", "status": "close"},
-    {"direction": "we", "type": "card", "authtype": "L3", "xpos": "3-4", "ypos": "5", "status": "close"},
-    {"direction": "we", "type": "code", "authtype": "4245", "xpos": "4-5", "ypos": "5", "status": "close"},
-    {"direction": "ns", "type": "door", "authtype": "none", "xpos": "6", "ypos": "6-7", "status": "open"},
-    {"direction": "we", "type": "card", "authtype": "L1", "xpos": "3-4", "ypos": "7", "status": "close"},
-    {"direction": "ns", "type": "door", "authtype": "none", "xpos": "6", "ypos": "8-9", "status": "open"},
-    {"direction": "we", "type": "door", "authtype": "none", "xpos": "4-5", "ypos": "9", "status": "close"}
+    {"type": "card", "authtype": "L1","xpos": 5, "ypos": 2, "status": "close", "name": "Buero 1"},
+    {"type": "card", "authtype": "L2","xpos": 9, "ypos": 2, "status": "close", "name": "Abstellkammer"},
+    {"type": "door", "authtype": "L2", "xpos": 8, "ypos": 5, "status": "close", "name": "Buero IT"},
+    {"type": "broken", "authtype": "none", "xpos": 10, "ypos": 7, "status": "close", "name": "Durchgangstuer"},
+    {"type": "card", "authtype": "L3", "xpos": 5, "ypos": 8, "status": "close", "name": "Mysterioeser Raum"},
+    {"type": "code", "authtype": "4245", "xpos": 8, "ypos": 8, "status": "close", "name": "Serverraum"},
+    {"type": "door", "authtype": "none", "xpos": 10, "ypos": 10, "status": "open", "name": "Durchgangstuer"},
+    {"type": "card", "authtype": "L1", "xpos": 5, "ypos": 11, "status": "close", "name": "Pausenraum"},
+    {"type": "door", "authtype": "none", "xpos": 10, "ypos": 13, "status": "open", "name": "Durchgangstuer"},
+    {"type": "door", "authtype": "none", "xpos": 8, "ypos": 14, "status": "close", "name": "Wachbuero"},
+    {"type": "door", "authtype": "L3", "xpos": 6, "ypos": 16, "status": "close", "name": "Ausgang"},
+    {"type": "door", "authtype": "L3", "xpos": 7, "ypos": 16, "status": "close", "name": "Ausgang"}
   ],
   "people":[
-    {"type": "player", "facing": "s", "xpos": 4, "ypos": 5},
+    {"type": "player", "facing": "e", "xpos": 10, "ypos": 6, "inventory": [
+      {"id": 15, "name": "L1 Karte", "movable": false, "pickable": true},
+      {"id": 16, "name": "USB-Stick", "movable": false, "pickable": true}
+    ]},
     {"type": "narrator", "facing": "e", "xpos": 1, "ypos": 8},
     {"type": "guard", "facing": "s", "xpos": 6, "ypos": 9}
+  ],
+  "walls": [
+    [1,1], [2,1], [3,1], [4,1], [5,1], [6,1], [7,1], [8,1], [9,1], [10,1], [11,1], [12,1],
+    [1,2], [12,2],
+    [1,3], [5,3], [9,3], [12,3],
+    [1,4], [2,4], [3,4], [4,4], [5,4], [8,4], [9,4], [10,4], [11,4], [12,4],
+    [1,5], [5,5], [12,5],
+    [1,6], [5,6], [8,6], [12,6],
+    [1,7], [3,7], [4,7], [5,7], [8,7], [9,7], [11,7], [12,7],
+    [1,8], [12,8],
+    [1,9], [5,9], [8,9], [12,9],
+    [1,10], [2,10], [3,10], [4,10], [5,10], [8,10], [9,10], [11,10], [12,10],
+    [1,11], [8,11], [12,11],
+    [1,12], [5,12], [8,12], [12,12],
+    [1,13], [2,13], [3,13], [4,13], [5,13], [8,13], [9,13], [11,13], [12,13],
+    [1,14], [5,14], [12,14],
+    [1,15], [5,15], [8,15], [12,15],
+    [1,16], [2,16], [3,16], [4,16], [5,16], [8,16], [9,16], [10,16], [11,16], [12,16]
   ]
 }

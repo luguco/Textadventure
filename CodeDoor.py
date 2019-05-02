@@ -2,11 +2,11 @@ from Door import *
 
 
 class CodeDoor(Door):
-    def __init__(self, pstatus, pdirection, ppos, pcode):
+    def __init__(self, pstatus, ppos, pcode, pname):
         self.code = pcode
         self.status = pstatus
-        self.direction = pdirection
         self.position = ppos
+        self.name = pname
 
     def open(self, pcode):
         if pcode == self.code:

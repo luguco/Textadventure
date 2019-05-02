@@ -2,11 +2,11 @@ from Door import *
 
 
 class CardDoor(Door):
-    def __init__(self, pstatus, pdirection, ppos, plevel):
+    def __init__(self, pstatus, ppos, plevel, pname):
         self.level = plevel
         self.status = pstatus
-        self.direction = pdirection
         self.position = ppos
+        self.name = pname
 
     def open(self, plevel):
         if plevel >= self.level:

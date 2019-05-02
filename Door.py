@@ -1,14 +1,15 @@
+# TODO: ADD DOORNAME
 class Door(object):
-    def __init__(self, pstatus, pdirection, ppos):
+    def __init__(self, pstatus, ppos, pname):
         self.status = pstatus
-        self.direction = pdirection
         self.position = ppos
+        self.name = pname
+
+    def getName(self):
+        return self.name
 
     def getStatus(self):
         return self.status
-
-    def getDirection(self):
-        return self.direction
 
     def getPosition(self):
         return self.position

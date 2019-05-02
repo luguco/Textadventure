@@ -17,12 +17,46 @@
     },
     "commands": {
       "info": "Folgende Befehle sind registriert:\nhelp <Befehl> \nquit \ncommands \nleft \nright \nlookaround \nmove \npickup <Objekt> \ngoto <X> <Y>"
-    }
-  }
-  ,
+    },
+	"left": {
+	  "info": "Drehe dich nach links"
+	},
+	"right":{
+	  "info": "Drehe dich nach rechts"
+	},
+	"lookaround":{
+	  "info": "Schaue dich um. Du siehst Objekte links, rechts und vor dir."
+	},
+	"move":{
+	  "info": "Du bewegst dich einen Schritt nach vorne"
+	},
+	"pickup":{
+	  "info": "Du hebst ein Objekt auf.\nBenutzung: 'pickup <Objekt>'"
+	},
+	"goto":{
+	  "info": "Du springst zu einer angegebenen Position. Nur fuer Testzwecke gedacht.\nBenutzung: 'goto <X> <Y>"
+	}
+  },
+  "turn":{
+	"general": "Du hast dich nach %direction% gedreht.\nDu schaust nun nach %facing%.",
+	"n": "Norden",
+	"s": "Sueden",
+	"w": "Westen",
+	"e": "Osten",
+	"left": "Links",
+	"right": "Rechts"
+  },
+  "lookaround":{
+    "left": "Links von dir ist ein/eine %object%.",
+    "right": "Rechts von dir ist ein/eine %object%.",
+    "front": "Vor dir ist ein/eine %object%.",
+    "wall": "Wand",
+    "door": "Tuer",
+    "doorname": "Neben ihr haengt das Schild '%doorname%'."
+  },
   "general": {
     "invalidcommand": "Dieser Befehl ist nicht registriert. Nutze 'help commands', um alle Befehle anzuzeigen.",
-    "invalidintroductionhelpcommand": "Dies ist nicht 'help commands'! Gebe 'help commands' ein:",
+    "invalidintroductionhelpcommand": "Dies ist nicht 'help commands'! Gib 'help commands' ein:",
     "seperator": "-------------------------------------------------------------------------------------------",
     "input": "Eingabe:"
   },

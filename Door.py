@@ -5,19 +5,19 @@ class Door(object):
         self.position = ppos
         self.name = pname
 
-    def getName(self):
+    def getName(self)-> str:
         return self.name
 
-    def getStatus(self):
+    def getStatus(self)-> str:
         return self.status
 
-    def getPosition(self):
+    def getPosition(self)-> list:
         return self.position
 
-    def open(self):
+    def open(self)-> None:
         if not self.status == 'broken':
             self.status = "open"
 
-    def close(self):
+    def close(self)-> None:
         self.status = "close"
 

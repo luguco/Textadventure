@@ -1,3 +1,6 @@
+# TODO: ADD GUI
+
+
 class IOHandler(object):
     def __init__(self, pgametype):
         self.gametype = pgametype

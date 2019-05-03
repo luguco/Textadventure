@@ -22,12 +22,19 @@ class MapManager(object):
         self.narrator = Person("Erzähler", 'narrator', n['facing'], [n['xpos'], n['ypos']])
         self.guard = Person("Wachmann", 'guard', g['facing'], [g['xpos'], g['ypos']])
 
+        # Initialize default inventory items:
+        inv = []
+        for o in p['inventory']:
+            obj = Object(o['name'], o['id'], False, True, [], None)
+            inv.append(obj)
+        self.player.setInventory(inv)
+
         # Initialize all objects and subobjects
         for o in jsonmap['objects']:
             obj = Object(o['name'], o['id'], o['movable'], o['pickable'], [], [o['posx'], o['posy']])
 
             for subo in o['inventory']:
-                subobj = Object(subo['name'], subo['id'], subo['movable'], subo['pickable'], [], [o['posx'], o['posy']])
+                subobj = Object(subo['name'], subo['id'], False, True, [], None)
                 inv = obj.getInventory()
                 inv.append(subobj)
                 obj.setInventory(inv)
@@ -128,19 +135,24 @@ class MapManager(object):
                 facing = "n"
         self.player.setFacing(facing)
 
-    def objectAtPosition(self, pos: list)-> bool:
+    def objectAtPosition(self, pos: list)-> object:
         for o in self.objects:
             if o.getPosition() == pos:
-                return True
+                return o
 
-        if self.player.getPosition() == pos:
-            return True
+        for d in self.doors:
+            if d.getPosition() == pos and d.getStatus() is not "open":
+                return d
+
+        for w in self.walls:
+            if w == pos:
+                return w
 
         if self.guard.getPosition() == pos:
-            return True
+            return self.guard
 
         if self.narrator.getPosition() == pos:
-            return True
+            return self.narrator
 
-        return False
+        return None
 

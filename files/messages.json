@@ -34,17 +34,34 @@
 	  "info": "Du hebst ein Objekt auf.\nBenutzung: 'pickup <Objekt>'"
 	},
 	"goto":{
-	  "info": "Du springst zu einer angegebenen Position. Nur fuer Testzwecke gedacht.\nBenutzung: 'goto <X> <Y>"
-	}
+	  "info": "Du springst zu einer angegebenen Position. Nur fuer Testzwecke gedacht.\nBenutzung: 'goto <X> <Y>'"
+	},
+    "showinventory": {
+      "info": "Zeigt dir den Inhalt deines Inventares an."
+    },
+    "door": {
+      "info": "Oeffne oder schließe eine Tuer. \nBei zugangsgesichten Tueren muss sich eine Zugangskarte (L?-Karte)\noder ein Pincodezettel in deinem Inventar befinden.\nBenutzung: 'door [open|close]'"
+    },
+    "getposition": {
+      "info": "Zeigt dir deine aktuelle Position an. Nur fuer Testzwecke gedacht."
+    },
+    "facing": {
+      "info": "Zeigt dir deine aktuelle Blickrichtung."
+    },
+    "object": {
+      "info": "Interagiere mit Objekten vor dir. \nBenutzung: 'object [showinventory|getitem|putitem|move] [left|right|forward|<Gegenstandsname>]\n'object showinventory': Zeigt dir das Inventar des Objekts an.\n'object getitem <Gegenstangsname>': Du nimmst den Gegenstand mit diesem Namen aus dem Objekt in dein Inventar\n'object putitem <Gegenstangsname>': Du legst den Gegenstand mit diesen Namen aus deinem Inventar in das Objekt\n'object move [left|right|forward]': Bewege den Gegenstand vor dir in die angegeben Richtung."
+    }
   },
-  "turn":{
+  "turn": {
 	"general": "Du hast dich nach %direction% gedreht.\nDu schaust nun nach %facing%.",
 	"n": "Norden",
 	"s": "Sueden",
 	"w": "Westen",
 	"e": "Osten",
-	"left": "Links",
-	"right": "Rechts"
+	"left": "links",
+	"right": "rechts",
+    "forward": "vorne",
+    "facing": "Du schaust nach %facing%."
   },
   "lookaround":{
     "left": "Links von dir ist ein/eine %object%.",
@@ -52,7 +69,44 @@
     "front": "Vor dir ist ein/eine %object%.",
     "wall": "Wand",
     "door": "Tuer",
-    "doorname": "Neben ihr haengt das Schild '%doorname%'."
+    "broken": "kaputt",
+    "open": "offen",
+    "close": "geschlossen",
+    "doorname": "Neben ihr haengt das Schild '%doorname%'.",
+    "doorstatus": "Sie ist %status%.",
+    "nothing": "Um dich herum ist nichts sichtbar.",
+    "nomove": "Du kannst nicht nach vorne gehen!",
+    "move": "Du bist einen Schritt nach vorne gelaufen."
+  },
+  "goto": {
+    "nomove": "Du kannst nicht zur angegebenen Position springen,\nda diese bereits durch ein Objekt belegt ist.",
+    "move": "Du bist an die Position (%x%|%y%) gesprungen.",
+    "position": "Du befindest dich and der Position (%x%|%y%)"
+  },
+  "inventory": {
+    "show": "Folgende Gegenstaende befinden sich in deinem Inventar:",
+    "noitems": "In deinem Inventar befinden sich keine Gegenstaende."
+  },
+  "door": {
+    "nodoor": "Vor dir befindet sich keine Tuer,\ndie du oeffnen oder schliessen koenntest!",
+    "broken": "Die Tuer ist defekt. Du kannst sie nicht oeffnen.",
+    "alreadystatus": "Die Tuer ist bereits %status%.",
+    "action": "Du hast die Tuer %action%.",
+    "noperm": "Du hast nicht die noetige Berechtigung, um die Tuer zu oeffnen.",
+    "opened": "geoeffnet",
+    "closed": "geschlossen"
+  },
+  "object":{
+    "noobject": "Es befindet sich kein Objekt vor dir, mit dem du interagieren koenntest.",
+    "show": "Folgende Gegenstaende befinden sich in dem %objectname%:",
+    "noitems": "Es befinden sich keine Gegenstaende in dem %objectname%.",
+    "get": "Du hast den Gegenstand '%item%' aus dem %objectname% in dein Inventar genommen.",
+    "noget": "Es befindet sich kein Gegenstand mit dem Namen '%name%' im %objectname%.",
+    "put": "Du hast den Gegenstand '%item%' aus deinem Inventar in den %objectname% gelegt.",
+    "noput": "Es befindet sich kein Gegenstand mit dem Namen '%name%' in deinem Inventar.",
+    "nomove": "Das Objekt %objectname% ist nicht bewegbar.",
+    "nomoveblocked": "Das Objekt kann nicht verschoben werden, da die Position durch ein/eine %objectname% blockiert ist.",
+    "moved": "Das Objekt wurde nach %direction% verschoben."
   },
   "general": {
     "invalidcommand": "Dieser Befehl ist nicht registriert. Nutze 'help commands', um alle Befehle anzuzeigen.",

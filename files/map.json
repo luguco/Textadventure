@@ -2,10 +2,10 @@
   "objects":[
     {"id": 0, "posx": 4, "posy": 2, "name": "Regal", "movable": true, "pickable": false, "inventory":[]},
     {"id": 1, "posx": 3, "posy": 3, "name": "Tisch", "movable": true, "pickable": false, "inventory":[
-      {"id": 2, "name": "L2 Karte", "movable": false, "pickable": true, "inventory":[]}]},
+      {"id": 2, "name": "L1-Karte"}]},
     {"id": 3, "posx": 11, "posy": 3, "name": "Feuermelder", "movable": false, "pickable": false, "inventory":[]},
     {"id": 4, "posx": 11, "posy": 5, "name": "Muelleimer", "movable": true, "pickable": false, "inventory":[
-      {"id": 5, "name": "Pincodezettel", "movable": false, "pickable": true}]},
+      {"id": 5, "name": "Pincodezettel-4245"}]},
     {"id": 6, "posx": 11, "posy": 6, "name": "Tisch", "movable": true, "pickable": false, "inventory":[]},
     {"id": 7, "posx": 3, "posy": 8, "name": "Regal", "movable": true, "pickable": false, "inventory":[]},
     {"id": 8, "posx": 11, "posy": 8, "name": "Server", "movable": false, "pickable": false, "inventory":[]},
@@ -14,7 +14,7 @@
     {"id": 11, "posx": 2, "posy": 7, "name": "Portal", "movable": false, "pickable": false, "inventory":[]},
     {"id": 12, "posx": 7, "posy": 15, "name": "Bewegungsmelder", "movable": false, "pickable": false, "inventory":[]},
     {"id": 13, "posx": 9, "posy": 9, "name": "Regal", "movable": true, "pickable": false, "inventory":[
-      {"id": 14, "name": "L3 Karte", "movable": false, "pickable": true}]}
+      {"id": 14, "name": "L3-Karte"}]}
   ],
   "doors":[
     {"type": "card", "authtype": "L1","xpos": 5, "ypos": 2, "status": "close", "name": "Buero 1"},
@@ -31,9 +31,8 @@
     {"type": "door", "authtype": "L3", "xpos": 7, "ypos": 16, "status": "close", "name": "Ausgang"}
   ],
   "people":[
-    {"type": "player", "facing": "e", "xpos": 10, "ypos": 6, "inventory": [
-      {"id": 15, "name": "L1 Karte", "movable": false, "pickable": true},
-      {"id": 16, "name": "USB-Stick", "movable": false, "pickable": true}
+    {"type": "player", "facing": "e", "xpos": 2, "ypos": 2, "inventory": [
+      {"id": 16, "name": "USB-Stick"}
     ]},
     {"type": "narrator", "facing": "e", "xpos": 1, "ypos": 8},
     {"type": "guard", "facing": "s", "xpos": 6, "ypos": 9}

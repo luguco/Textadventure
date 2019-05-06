@@ -15,12 +15,9 @@ class MapManager(object):
 
         p = jsonmap['people'][0]
         n = jsonmap['people'][1]
-        g = jsonmap['people'][2]
-        # TODO: ADD INVENTORY ITEMS TO PLAYER
 
         self.player = Player("", p['facing'], [], [p['xpos'], p['ypos']])
-        self.narrator = Person("Erzähler", 'narrator', n['facing'], [n['xpos'], n['ypos']])
-        self.guard = Person("Wachmann", 'guard', g['facing'], [g['xpos'], g['ypos']])
+        self.narrator = Person("Erzaehler", 'narrator', n['facing'], [n['xpos'], n['ypos']])
 
         # Initialize default inventory items:
         inv = []
@@ -34,7 +31,7 @@ class MapManager(object):
             obj = Object(o['name'], o['id'], o['movable'], o['pickable'], [], [o['posx'], o['posy']])
 
             for subo in o['inventory']:
-                subobj = Object(subo['name'], subo['id'], False, True, [], None)
+                subobj = Object(subo['name'], subo['id'], False, True, None, None)
                 inv = obj.getInventory()
                 inv.append(subobj)
                 obj.setInventory(inv)
@@ -106,6 +103,10 @@ class MapManager(object):
                 index = coordpos.index(w)
                 res.append(['wall', w, index])
 
+        if self.narrator.getPosition() in coordpos:
+            index = coordpos.index(self.narrator.getPosition())
+            res.append(['narrator', self.narrator, index])
+
         return res
 
     def getPlayer(self):
@@ -147,9 +148,6 @@ class MapManager(object):
         for w in self.walls:
             if w == pos:
                 return w
-
-        if self.guard.getPosition() == pos:
-            return self.guard
 
         if self.narrator.getPosition() == pos:
             return self.narrator

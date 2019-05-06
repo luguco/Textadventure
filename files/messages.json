@@ -16,7 +16,7 @@
       "info": "Schliesst das Programm. Alle Spielfortschritte gehen verloren."
     },
     "commands": {
-      "info": "Folgende Befehle sind registriert:\nhelp <Befehl> \nquit \ncommands \nleft \nright \nlookaround \nmove \npickup <Objekt> \ngoto <X> <Y>"
+      "info": "Folgende Befehle sind registriert:\nhelp <Befehl>\nquit\ncommands\nleft\nright\nlookaround\nmove\ngoto <X> <Y>\nshowinventory\ndoor [open|close]\ngetposition\nfacing\nobject [showinventory|getitem|putitem|move] [left|right|forward|<Gegenstandsname>]\nhackserver\ntalk"
     },
 	"left": {
 	  "info": "Drehe dich nach links"
@@ -29,9 +29,6 @@
 	},
 	"move":{
 	  "info": "Du bewegst dich einen Schritt nach vorne"
-	},
-	"pickup":{
-	  "info": "Du hebst ein Objekt auf.\nBenutzung: 'pickup <Objekt>'"
 	},
 	"goto":{
 	  "info": "Du springst zu einer angegebenen Position. Nur fuer Testzwecke gedacht.\nBenutzung: 'goto <X> <Y>'"
@@ -49,7 +46,13 @@
       "info": "Zeigt dir deine aktuelle Blickrichtung."
     },
     "object": {
-      "info": "Interagiere mit Objekten vor dir. \nBenutzung: 'object [showinventory|getitem|putitem|move] [left|right|forward|<Gegenstandsname>]\n'object showinventory': Zeigt dir das Inventar des Objekts an.\n'object getitem <Gegenstangsname>': Du nimmst den Gegenstand mit diesem Namen aus dem Objekt in dein Inventar\n'object putitem <Gegenstangsname>': Du legst den Gegenstand mit diesen Namen aus deinem Inventar in das Objekt\n'object move [left|right|forward]': Bewege den Gegenstand vor dir in die angegeben Richtung."
+      "info": "Interagiere mit Objekten vor dir. \nBenutzung: 'object [showinventory|getitem|putitem|move] [left|right|forward|<Gegenstandsname>]',\n'object showinventory': Zeigt dir das Inventar des Objekts an.\n'object getitem <Gegenstangsname>': Du nimmst den Gegenstand mit diesem Namen aus dem Objekt in dein Inventar\n'object putitem <Gegenstangsname>': Du legst den Gegenstand mit diesen Namen aus deinem Inventar in das Objekt\n'object move [left|right|forward]': Bewege den Gegenstand vor dir in die angegeben Richtung."
+    },
+    "hackserver": {
+      "info": "Hacke den Server, um die Ueberwachungskamera zu deaktivieren."
+    },
+    "talk": {
+      "info": "Spreche mit einer Person."
     }
   },
   "turn": {
@@ -94,7 +97,8 @@
     "action": "Du hast die Tuer %action%.",
     "noperm": "Du hast nicht die noetige Berechtigung, um die Tuer zu oeffnen.",
     "opened": "geoeffnet",
-    "closed": "geschlossen"
+    "closed": "geschlossen",
+    "noexit": "Du kannst die Tuer nicht oeffnen und das Spiel beenden,\nda du den USB-Stick nicht in deinem Inventar hast."
   },
   "object":{
     "noobject": "Es befindet sich kein Objekt vor dir, mit dem du interagieren koenntest.",
@@ -108,11 +112,24 @@
     "nomoveblocked": "Das Objekt kann nicht verschoben werden, da die Position durch ein/eine %objectname% blockiert ist.",
     "moved": "Das Objekt wurde nach %direction% verschoben."
   },
+  "server": {
+    "noserver": "Vor dir ist kein Server, den du hacken koenntest.",
+    "alreadyhacked": "Du hast den Server bereits gehacked!",
+    "hacked": "Du hast den Sever gehacked.\nDie Ueberwachungskameras sind nun deaktiviert."
+  },
+  "talk": {
+    "notalk": "Vor dir ist keine Person, mit der du reden koenntest.",
+    "talk": "Hallo, mein Name ist Herr Mueller.\nPLATZHALTER",
+    "keycard": "Du hast vom mir eine Level 2 Schluesselkarte erhalten."
+  },
   "general": {
     "invalidcommand": "Dieser Befehl ist nicht registriert. Nutze 'help commands', um alle Befehle anzuzeigen.",
     "invalidintroductionhelpcommand": "Dies ist nicht 'help commands'! Gib 'help commands' ein:",
     "seperator": "-------------------------------------------------------------------------------------------",
-    "input": "Eingabe:"
+    "input": "Eingabe:",
+    "gamefinished": "Herzlichen Glueckwunsch!\nDu hast den USB-Stick erfolgreich gestohlen,\nohne erwischt zu werden!\nDas Spiel ist hier beendet.",
+    "gamefailded": "Du hast die Ueberwachungskamera nicht deaktiviert\nund wurdest erwischt.\nDu kannst das Spiel neu starten,\num es erneut zu versuchen.",
+    "portalend": "Du bist durch das verbotene Portal gegangen und\nhast damit das Spiel beendet.\nDu kannst es neu starten,\num es neu zu versuchen."
   },
   "objectmessages":{
   "insert_id_here":{"onpickup": "","onlookat": "","onuse": ""}

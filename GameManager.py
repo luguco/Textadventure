@@ -3,44 +3,63 @@ from MapManager import *
 from IOHandler import *
 from MessageHandler import *
 from sys import exit
+from GUI import *
+
+# TODO: ADD TUTORIAL FOR GUI
+# TODO: REWRITE TEXTS
+# TODO: UPDATE MAP
 
 
 class GameManager(object):
-    def __init__(self):
+    def __init__(self, gametype, pgui):
+        self.gui = pgui
         self.filesystem = FileSystem()
+        self.iohandler = IOHandler(gametype, pgui)
         self.mapmanager = MapManager(self.filesystem.getData('map'))
         self.mapmanager.getVisibleObjects()
-        self.iohandler = IOHandler("console")
         self.messagehandler = MessageHandler(self.filesystem.getData("messages"))
+
+        self.gamerun = False
+        self.securitycamera = True
+        self.talked = False
 
     def start(self):
         msghandler = self.messagehandler
         iohandler = self.iohandler
 
-        # Tutorial
-        # p = self.mapmanager.getPlayer()
-        # iohandler.setOutput(msghandler.getMessage("introduction-welcome"))
-        # name = iohandler.getInput(msghandler.getMessage("introduction-name"))
-        # p.setName(name)
-        # iohandler.setOutput(msghandler.getMessage("introduction-personalwelcome").replace("%name%", p.getName()))
-        # iohandler.setOutput(msghandler.getMessage("introduction-help"))
-        # res = iohandler.getInput(msghandler.getMessage("introduction-helpcommands"))
-        #
-        # while res != "help commands":
-        #     res = iohandler.getInput(msghandler.getMessage("general-invalidintroductionhelpcommand"))
-        #
-        # iohandler.setOutput(msghandler.getMessage("general-seperator"))
-        # iohandler.setOutput(msghandler.getMessage("commands-commands-info"))
-        # iohandler.setOutput(msghandler.getMessage("introduction-end"))
+        if self.gui is None:
 
-        # Game begin
-        while True:
-            iohandler.setOutput(msghandler.getMessage("general-seperator"))
-            input = self.iohandler.getInput(msghandler.getMessage("general-input"))
-            self.__handleCommand(input)
+            # Tutorial
+            # p = self.mapmanager.getPlayer()
+            # iohandler.setOutput(msghandler.getMessage("introduction-welcome"))
+            # name = iohandler.getInput(msghandler.getMessage("introduction-name"))
+            # p.setName(name)
+            # iohandler.setOutput(msghandler.getMessage("introduction-personalwelcome").replace("%name%", p.getName()))
+            # iohandler.setOutput(msghandler.getMessage("introduction-help"))
+            # res = iohandler.getInput(msghandler.getMessage("introduction-helpcommands"))
+            #
+            # while res != "help commands":
+            #     res = iohandler.getInput(msghandler.getMessage("general-invalidintroductionhelpcommand"))
+            #
+            # iohandler.setOutput(msghandler.getMessage("general-seperator"))
+            # iohandler.setOutput(msghandler.getMessage("commands-commands-info"))
+            # iohandler.setOutput(msghandler.getMessage("introduction-end"))
 
-# TODO: GOING THROUGH DOORS
-# TODO: UPDATE HELP COMMANDS
+            # Game begin
+            self.gamerun = True
+            while self.gamerun:
+                iohandler.setOutput(msghandler.getMessage("general-seperator"))
+                input = self.iohandler.getInput(msghandler.getMessage("general-input"))
+                self.__handleCommand(input)
+
+        else:
+            self.gui.start()
+
+    def inputtrigger(self):
+        input = self.iohandler.getInput(self.messagehandler.getMessage("general-input"))
+        self.__handleCommand(input)
+
+    # TODO: REMOVE L2-KARTE FROM DEFAULT INVENTORY
 
     def __handleCommand(self, input: str):
         msghandler = self.messagehandler
@@ -54,11 +73,10 @@ class GameManager(object):
             iohandler.setOutput(msghandler.getMessage("commands-" + args[0] + "-info"))
 
         elif command == "quit":
-            # TODO: FINAL QUESTION FOR EXIT
             exit(0)
 
         elif command == "commands":
-            iohandler.setOutput(msghandler.getMessage("commands-commands"))
+            iohandler.setOutput(msghandler.getMessage("commands-commands-info"))
 
         elif command == "left":
             self.mapmanager.rotatePlayer("left")
@@ -84,43 +102,65 @@ class GameManager(object):
                 # left
                 if direction == 0:
                     if objtype == "wall":
-                        msg = msghandler.getMessage("lookaround-left").replace("%object%", msghandler.getMessage("lookaround-wall"))
+                        msg = msghandler.getMessage("lookaround-left").replace("%object%",
+                                                                               msghandler.getMessage("lookaround-wall"))
 
                     elif objtype == "door":
-                        msg = msghandler.getMessage("lookaround-left").replace("%object%", msghandler.getMessage("lookaround-door"))
-                        msg = msg + "\n" + msghandler.getMessage("lookaround-doorname").replace("%doorname%", o[1].getName())
-                        msg = msg + "\n" + msghandler.getMessage("lookaround-doorstatus").replace("%status%",  msghandler.getMessage("lookaround-" + o[1].getStatus()))
+                        msg = msghandler.getMessage("lookaround-left").replace("%object%",
+                                                                               msghandler.getMessage("lookaround-door"))
+                        msg = msg + "\n" + msghandler.getMessage("lookaround-doorname").replace("%doorname%",
+                                                                                                o[1].getName())
+                        msg = msg + "\n" + msghandler.getMessage("lookaround-doorstatus").replace("%status%",
+                                                                                                  msghandler.getMessage(
+                                                                                                      "lookaround-" + o[
+                                                                                                          1].getStatus()))
 
                     elif objtype == "object":
+                        msg = msghandler.getMessage("lookaround-left").replace("%object%", o[1].getName())
+
+                    elif objtype == "narrator":
                         msg = msghandler.getMessage("lookaround-left").replace("%object%", o[1].getName())
                 # front
                 elif direction == 1:
                     if objtype == "wall":
-                        msg = msghandler.getMessage("lookaround-front").replace("%object%", msghandler.getMessage("lookaround-wall"))
+                        msg = msghandler.getMessage("lookaround-front").replace("%object%", msghandler.getMessage(
+                            "lookaround-wall"))
 
                     elif objtype == "door":
-                        msg = msghandler.getMessage("lookaround-front").replace("%object%", msghandler.getMessage("lookaround-door"))
+                        msg = msghandler.getMessage("lookaround-front").replace("%object%", msghandler.getMessage(
+                            "lookaround-door"))
                         msg = msg + "\n" + msghandler.getMessage("lookaround-doorname").replace("%doorname%",
                                                                                                 o[1].getName())
                         msg = msg + "\n" + msghandler.getMessage(
-                            "lookaround-doorstatus").replace("%status%", msghandler.getMessage("lookaround-" + o[1].getStatus()))
+                            "lookaround-doorstatus").replace("%status%",
+                                                             msghandler.getMessage("lookaround-" + o[1].getStatus()))
 
                     elif objtype == "object":
                         msg = msghandler.getMessage("lookaround-front").replace("%object%", o[1].getName())
 
+                    elif objtype == "narrator":
+                        msg = msghandler.getMessage("lookaround-front").replace("%object%", o[1].getName())
                 # right
                 elif direction == 2:
                     if objtype == "wall":
-                        msg = msghandler.getMessage("lookaround-right").replace("%object%", msghandler.getMessage("lookaround-wall"))
+                        msg = msghandler.getMessage("lookaround-right").replace("%object%", msghandler.getMessage(
+                            "lookaround-wall"))
 
                     elif objtype == "door":
-                        msg = msghandler.getMessage("lookaround-right").replace("%object%", msghandler.getMessage("lookaround-door"))
-                        msg = msg + "\n" + msghandler.getMessage("lookaround-doorname").replace("%doorname%", o[1].getName())
+                        msg = msghandler.getMessage("lookaround-right").replace("%object%", msghandler.getMessage(
+                            "lookaround-door"))
+                        msg = msg + "\n" + msghandler.getMessage("lookaround-doorname").replace("%doorname%",
+                                                                                                o[1].getName())
                         msg = msg + "\n" + msghandler.getMessage(
-                            "lookaround-doorstatus").replace("%status%",  msghandler.getMessage("lookaround-" + o[1].getStatus()))
+                            "lookaround-doorstatus").replace("%status%",
+                                                             msghandler.getMessage("lookaround-" + o[1].getStatus()))
 
                     elif objtype == "object":
                         msg = msghandler.getMessage("lookaround-right").replace("%object%", o[1].getName())
+
+                    elif objtype == "narrator":
+                        msg = msghandler.getMessage("lookaround-right").replace("%object%", o[1].getName())
+
                 if len(msg) > 0:
                     iohandler.setOutput(msg)
                 else:
@@ -135,25 +175,35 @@ class GameManager(object):
                 objtype = o[0]
                 if direction == 1:
                     if objtype == "door":
-                        if o[1].getStatus is not "open":
+                        if o[1].getStatus() is not "open":
                             msg = msghandler.getMessage("lookaround-nomove") + " "
                             obj = o
                             break
                     else:
-                        msg = msghandler.getMessage("lookaround-nomove") + " "
-                        obj = o
+                        if o[1].getName() == "Portal":
+                            self.gamerun = False
+                            iohandler.setOutput(msghandler.getMessage("general-portalend"))
+                            return
+                        else:
+                            msg = msghandler.getMessage("lookaround-nomove") + " "
+                            obj = o
                         break
 
             if obj is not None:
                 objtype = obj[0]
                 if objtype == "wall":
-                    msg = msg + msghandler.getMessage("lookaround-front").replace("%object%", msghandler.getMessage("lookaround-wall"))
+                    msg = msg + msghandler.getMessage("lookaround-front").replace("%object%", msghandler.getMessage(
+                        "lookaround-wall"))
 
                 elif objtype == "door":
                     if obj[1].getStatus() is not "open":
-                        msg = msg + msghandler.getMessage("lookaround-front").replace("%object%", msghandler.getMessage("lookaround-door"))
+                        msg = msg + msghandler.getMessage("lookaround-front").replace("%object%", msghandler.getMessage(
+                            "lookaround-door"))
 
                 elif objtype == "object":
+                    msg = msg + msghandler.getMessage("lookaround-front").replace("%object%", obj[1].getName())
+
+                elif objtype == "narrator":
                     msg = msg + msghandler.getMessage("lookaround-front").replace("%object%", obj[1].getName())
 
             if len(msg) > 0:
@@ -173,6 +223,13 @@ class GameManager(object):
                     pos = [pos[0] - 1, pos[1]]
 
                 p.setPosition(pos)
+
+                if pos == [6, 15] or pos == [7, 15]:
+                    if self.securitycamera:
+                        self.gamerun = False
+                        iohandler.setOutput(msghandler.getMessage("general-gamefailded"))
+                        return
+
                 iohandler.setOutput(msghandler.getMessage("lookaround-move"))
 
         elif command == "goto" and len(args) >= 2:
@@ -223,7 +280,9 @@ class GameManager(object):
 
             if args[0] == "open":
                 if status == "open":
-                    iohandler.setOutput(msghandler.getMessage("door-alreadystatus").replace("%status%", msghandler.getMessage("lookaround-open")))
+                    iohandler.setOutput(msghandler.getMessage("door-alreadystatus").replace("%status%",
+                                                                                            msghandler.getMessage(
+                                                                                                "lookaround-open")))
                     return
                 elif type(obj) == CardDoor:
                     p = self.mapmanager.getPlayer()
@@ -243,11 +302,33 @@ class GameManager(object):
                                         keylevel = kl
                                 else:
                                     keylevel = kl
+
+                    # Test for exitdoor:
+                    if obj.getName() == "Ausgang":
+                        found = False
+                        for o in inv:
+                            if o.getName() == "USB-Stick":
+                                found = True
+                        if found:
+                            res = obj.open(keylevel)
+                            if not res:
+                                iohandler.setOutput(msghandler.getMessage("door-noperm"))
+                                return
+                            else:
+                                self.gamerun = False
+                                iohandler.setOutput(msghandler.getMessage("general-gamefinished"))
+                                return
+                        else:
+                            iohandler.setOutput(msghandler.getMessage("door-noexit"))
+                            return
+
                     res = obj.open(keylevel)
                     if not res:
                         iohandler.setOutput(msghandler.getMessage("door-noperm"))
                     else:
-                        iohandler.setOutput(msghandler.getMessage("door-action").replace("%action%", msghandler.getMessage("door-opened")))
+                        iohandler.setOutput(msghandler.getMessage("door-action").replace("%action%",
+                                                                                         msghandler.getMessage(
+                                                                                             "door-opened")))
 
                 # Find a matching door code in the inventory
                 elif type(obj) == CodeDoor:
@@ -260,7 +341,9 @@ class GameManager(object):
                             code = o.getName().replace("Pincodezettel-", "")
                             res = obj.open(code)
                             if res:
-                                iohandler.setOutput(msghandler.getMessage("door-action").replace("%action%", msghandler.getMessage("door-opened")))
+                                iohandler.setOutput(msghandler.getMessage("door-action").replace("%action%",
+                                                                                                 msghandler.getMessage(
+                                                                                                     "door-opened")))
                                 return
                     if not res:
                         iohandler.setOutput(msghandler.getMessage("door-noperm"))
@@ -269,7 +352,9 @@ class GameManager(object):
 
             elif args[0] == "close":
                 if status == "close":
-                    iohandler.setOutput(msghandler.getMessage("door-alreadystatus").replace("%status%", msghandler.getMessage("lookaround-close")))
+                    iohandler.setOutput(msghandler.getMessage("door-alreadystatus").replace("%status%",
+                                                                                            msghandler.getMessage(
+                                                                                                "lookaround-close")))
                     return
                 else:
                     obj.close()
@@ -280,7 +365,8 @@ class GameManager(object):
             p = self.mapmanager.getPlayer()
             pos = p.getPosition()
 
-            iohandler.setOutput(msghandler.getMessage("goto-position").replace("%x%", str(pos[0])).replace("%y%", str(pos[1])))
+            iohandler.setOutput(
+                msghandler.getMessage("goto-position").replace("%x%", str(pos[0])).replace("%y%", str(pos[1])))
 
         elif command == "facing":
             p = self.mapmanager.getPlayer()
@@ -329,9 +415,13 @@ class GameManager(object):
                         pinv.append(o)
                         p.setInventory(pinv)
 
-                        iohandler.setOutput(msghandler.getMessage("object-get").replace("%item%", o.getName()).replace("%objectname%", obj.getName()))
+                        iohandler.setOutput(
+                            msghandler.getMessage("object-get").replace("%item%", o.getName()).replace("%objectname%",
+                                                                                                       obj.getName()))
                         return
-                iohandler.setOutput(msghandler.getMessage("object-noget").replace("%name%", args[1]).replace("%objectname%", obj.getName()))
+                iohandler.setOutput(
+                    msghandler.getMessage("object-noget").replace("%name%", args[1]).replace("%objectname%",
+                                                                                             obj.getName()))
 
             elif args[0] == "putitem" and len(args) >= 2:
                 inv = obj.getInventory()
@@ -345,7 +435,9 @@ class GameManager(object):
 
                         inv.append(o)
                         obj.setInventory(inv)
-                        iohandler.setOutput(msghandler.getMessage("object-put").replace("%item%", o.getName()).replace("%objectname%", obj.getName()))
+                        iohandler.setOutput(
+                            msghandler.getMessage("object-put").replace("%item%", o.getName()).replace("%objectname%",
+                                                                                                       obj.getName()))
                         return
 
                 iohandler.setOutput(msghandler.getMessage("object-noput").replace("%name%", args[1]))
@@ -402,6 +494,7 @@ class GameManager(object):
                     objname = ""
                     if type(objatpos) == list:
                         objname = msghandler.getMessage("lookaround-wall")
+
                     elif type(objatpos) == Object:
                         objname = objatpos.getName()
                     else:
@@ -414,9 +507,68 @@ class GameManager(object):
                 dir = msghandler.getMessage("turn-" + args[1])
                 iohandler.setOutput(msghandler.getMessage("object-moved").replace("%direction%", dir))
 
+        elif command == "hackserver":
+            objects = self.mapmanager.getVisibleObjects()
+            obj = None
+            msg = ""
+            for o in objects:
+                direction = o[2]
+                objtype = o[0]
+                if direction == 1:
+                    if type(o[1]) == Object:
+                        if o[1].getName() == "Server":
+                            obj = o[1]
+                            break
+            if not obj:
+                msg = msghandler.getMessage("server-noserver")
+            else:
+                if not self.securitycamera:
+                    msg = msghandler.getMessage("server-alreadyhacked")
+                else:
+                    self.securitycamera = False
+                    msg = msghandler.getMessage("server-hacked")
+
+            iohandler.setOutput(msg)
+
+        elif command == "talk":
+            objects = self.mapmanager.getVisibleObjects()
+            obj = None
+            msg = ""
+            for o in objects:
+                direction = o[2]
+                objtype = o[0]
+                if direction == 1:
+                    if objtype == "narrator":
+                        obj = o[1]
+
+            if obj is None:
+                msg = msghandler.getMessage("talk-notalk")
+            else:
+                if self.talked:
+                    msg = msghandler.getMessage("talk-talk")
+                else:
+                    msg = msghandler.getMessage("talk-talk")
+                    self.talked = True
+                    p = self.mapmanager.getPlayer()
+                    inv = p.getInventory()
+                    key = Object("L2-Karte", 999, False, True, None, None)
+                    inv.append(key)
+                    p.setInventory(inv)
+                    msg = msg + "\n" + msghandler.getMessage("talk-keycard")
+
+            iohandler.setOutput(msg)
+
         else:
             iohandler.setOutput(msghandler.getMessage("general-invalidcommand"))
 
 
-g = GameManager()
-g.start()
+i = input("Wie soll das Spiel gestartet werden? console oder gui?")
+if i == "console":
+    g = GameManager("console", None)
+    g.start()
+elif i == "gui":
+    gui = GUI()
+    g = GameManager("gui", gui)
+    gui.setGameManager(g)
+    g.start()
+

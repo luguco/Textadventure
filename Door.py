@@ -1,4 +1,3 @@
-# TODO: ADD DOORNAME
 class Door(object):
     def __init__(self, pstatus, ppos, pname):
         self.status = pstatus

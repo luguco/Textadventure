@@ -3,8 +3,11 @@ class MessageHandler(object):
         self.messages = pmsg
 
     def getMessage(self, msgid: str) -> str:
-        path = msgid.split("-")
-        res = self.messages
-        for p in path:
-            res = res[p]
-        return res
+        try:
+            path = msgid.split("-")
+            res = self.messages
+            for p in path:
+                res = res[p]
+            return res
+        except:
+            return ""

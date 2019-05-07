@@ -30,20 +30,20 @@ class GameManager(object):
         if self.gui is None:
 
             # Tutorial
-            # p = self.mapmanager.getPlayer()
-            # iohandler.setOutput(msghandler.getMessage("introduction-welcome"))
-            # name = iohandler.getInput(msghandler.getMessage("introduction-name"))
-            # p.setName(name)
-            # iohandler.setOutput(msghandler.getMessage("introduction-personalwelcome").replace("%name%", p.getName()))
-            # iohandler.setOutput(msghandler.getMessage("introduction-help"))
-            # res = iohandler.getInput(msghandler.getMessage("introduction-helpcommands"))
-            #
-            # while res != "help commands":
-            #     res = iohandler.getInput(msghandler.getMessage("general-invalidintroductionhelpcommand"))
-            #
-            # iohandler.setOutput(msghandler.getMessage("general-seperator"))
-            # iohandler.setOutput(msghandler.getMessage("commands-commands-info"))
-            # iohandler.setOutput(msghandler.getMessage("introduction-end"))
+            p = self.mapmanager.getPlayer()
+            iohandler.setOutput(msghandler.getMessage("introduction-welcome"))
+            name = iohandler.getInput(msghandler.getMessage("introduction-name"))
+            p.setName(name)
+            iohandler.setOutput(msghandler.getMessage("introduction-personalwelcome").replace("%name%", p.getName()))
+            iohandler.setOutput(msghandler.getMessage("introduction-help"))
+            res = iohandler.getInput(msghandler.getMessage("introduction-helpcommands"))
+
+            while res != "help commands":
+                res = iohandler.getInput(msghandler.getMessage("general-invalidintroductionhelpcommand"))
+
+            iohandler.setOutput(msghandler.getMessage("general-seperator"))
+            iohandler.setOutput(msghandler.getMessage("commands-commands-info"))
+            iohandler.setOutput(msghandler.getMessage("introduction-end"))
 
             # Game begin
             self.gamerun = True
@@ -53,6 +53,11 @@ class GameManager(object):
                 self.__handleCommand(input)
 
         else:
+            msg = msghandler.getMessage("introduction-welcome")
+            msg = msg + "\n" + msghandler.getMessage("introduction-help")
+            msg = msg + "\n" + msghandler.getMessage("introduction-helpcommands")
+
+            self.gui.write(msg)
             self.gui.start()
 
     def inputtrigger(self):

@@ -1,6 +1,6 @@
 {
   "introduction": {
-    "welcome": "PLATZHALTER Hallo und herzlich wilkommen",
+    "welcome": "Hallo und herzlich wilkommen zu Textescape,\n einem Escape Spiel als Textadventure.\nDu befindest dich in einer IT-Firma,\nin die du eingebrochen bist,\num einen USB-Stick zu klauen.\nDieser befindet sich nun in deinem Besitzt.\nJetzt musst du es nur noch bis zum Ausgang schaffen.\nSuche zu Beginn Herr Mueller,\ndieser wird dir noch mehr Dinge erklaeren koennen.\nDu findest ihn wahrscheinlich im Pausenraum.\nUnd jetzt wuensche ich dir viel Spass beim Spielen!",
     "name": "Wie heisst du?",
     "personalwelcome": "Hallo %name%",
     "help": "Mit dem Befehl 'help commands' kannst du dir alle Befehle anzeigen lassen.",
@@ -119,8 +119,8 @@
   },
   "talk": {
     "notalk": "Vor dir ist keine Person, mit der du reden koenntest.",
-    "talk": "Hallo, mein Name ist Herr Mueller.\nPLATZHALTER",
-    "keycard": "Du hast vom mir eine Level 2 Schluesselkarte erhalten."
+    "talk": "Hallo, mein Name ist Herr Mueller.\nWie ich sehe, hast du mich gefunden.\nDer Ausgang, den du suchst\nbefindet sich am Ende des Flures.\nEr ist aber mit einer Ueberwachungskamera gesichert,\ndie du erst im Serverraum deaktivieren musst.\nFuer den habe ich aber keine Zugansberechtigung,\nden hat nur die IT.\nIch habe nur eine Level 2 Karte,\ndie ich dir geben kann.\nIc wuensche dir viel Glueck!",
+    "keycard": "Du hast von mir eine Level 2 Schluesselkarte erhalten."
   },
   "general": {
     "invalidcommand": "Dieser Befehl ist nicht registriert. Nutze 'help commands', um alle Befehle anzuzeigen.",
